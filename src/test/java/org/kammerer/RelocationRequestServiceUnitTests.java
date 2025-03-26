@@ -6,6 +6,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.time.LocalDateTime;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
@@ -24,8 +26,14 @@ public class RelocationRequestServiceUnitTests {
 
     @Test
     void createRelocationRequest_UnitTest() {
-        RelocationRequest request =
-                new RelocationRequest("2025-04-01T08:00", "Max Mustermann", "Berlin", "München", true, 3, true);
+        RelocationRequest request = new RelocationRequest();
+        request.setDatetime(LocalDateTime.parse("2025-04-01T08:00"));
+        request.setName("Max Mustermann");
+        request.setFromLocation("Wien");
+        request.setToLocation("Graz");
+        request.setFloor(3);
+        request.setElevator(true);
+        request.setPackagingService(true);
 
         when(relocationRequestRepository.save(request)).thenReturn(request);
 

@@ -22,23 +22,26 @@ public class RelocationRequestApiTests {
     @Autowired
     private MockMvc mockMvc;
 
-    final private ObjectMapper objectMapper;
-
     @Autowired
     private RelocationRequestRepository relocationRequestRepository;
 
-    public RelocationRequestApiTests() {
-        this.objectMapper = new ObjectMapper();
-    }
-
     @Test
     void createRelocationRequest_Success() throws Exception {
-        RelocationRequest request =
-                new RelocationRequest("2025-04-01T08:00", "Max Mustermann", "Berlin", "München", true, 3, true);
+        String jsonRequest = """
+        {
+            "datetime": "2025-04-01T08:00",
+            "name": "Max Mustermann",
+            "fromLocation": "Wien",
+            "toLocation": "Graz",
+            "floor": 3,
+            "elevator": true,
+            "packagingService": true
+        }
+        """;
 
         mockMvc.perform(post("/requestForRelocationSupport")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
+                        .content(jsonRequest))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.message").value("Relocation request successfully created"));
 
