@@ -11,12 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/requestForRelocationSupport")
 public class RelocationRequestController {
 
-    @Autowired
-    private RelocationRequestService relocationRequestService;
+  @Autowired private RelocationRequestService relocationRequestService;
 
-    @PostMapping
-    public ResponseEntity<?> createRelocationRequest(@RequestBody RelocationRequest request) {
-        relocationRequestService.createRelocationRequest(request);
-        return ResponseEntity.ok().body("{\"message\": \"Relocation request successfully created\"}");
-    }
+  @PostMapping
+  public ResponseEntity<?> createRelocationRequest(@RequestBody RelocationRequest request) {
+    relocationRequestService.createRelocationRequest(request);
+    return ResponseEntity.ok().body("{\"message\": \"Relocation request successfully created\"}");
+  }
 }

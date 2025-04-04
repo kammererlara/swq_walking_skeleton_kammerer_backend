@@ -6,10 +6,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class RelocationRequestService {
 
-    @Autowired
-    private RelocationRequestRepository relocationRequestRepository;
+  @Autowired private RelocationRequestRepository relocationRequestRepository;
 
-    public RelocationRequest createRelocationRequest(RelocationRequest request) {
-        return relocationRequestRepository.save(request);
-    }
+  public RelocationRequest createRelocationRequest(RelocationRequest request) {
+    return relocationRequestRepository.save(request);
+  }
 }
